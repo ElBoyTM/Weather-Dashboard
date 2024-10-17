@@ -12,11 +12,11 @@ class City {
   }
 }
 
-// TODO: Complete the HistoryService class
+// DONE: Complete the HistoryService class
 class HistoryService {
   // DONE: Define a read method that reads from the searchHistory.json file
   private async read() {
-    return await fs.readFile('db/db.json');
+    return await fs.readFile('db/db.json', 'utf8');
   };
   // DONE: Define a write method that writes the updated cities array to the searchHistory.json file
   private async write(cities: City[]) {
