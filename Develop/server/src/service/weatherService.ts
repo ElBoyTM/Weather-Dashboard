@@ -83,7 +83,15 @@ class WeatherService {
     }
   }
   // TODO: Create fetchWeatherData method
-  // private async fetchWeatherData(coordinates: Coordinates) {}
+  private async fetchWeatherData(coordinates: Coordinates) {
+    const weatherQuery = this.buildWeatherQuery(coordinates);
+    const response = await fetch(weatherQuery);
+    if (!response.ok) {
+      return `Failed to fetch weather data for ${this.cityName}`;
+    }
+    const data = await response.json();
+    return data;
+  }
   // TODO: Build parseCurrentWeather method
   // private parseCurrentWeather(response: any) {}
   // TODO: Complete buildForecastArray method
