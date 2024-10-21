@@ -109,7 +109,7 @@ class WeatherService {
     return new Weather(city, cityID, date, icon, iconDescription, tempF, windSpeed, humidity);
   }
   // TODO: Complete buildForecastArray method
-  private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
+  private buildForecastArray(_currentWeather: Weather, weatherData: any[]) {
     const forecastArray = [];
     const today = new Date().toLocaleDateString();
 
