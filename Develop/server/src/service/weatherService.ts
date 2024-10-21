@@ -71,13 +71,25 @@ class WeatherService {
     return `${this.baseURL}/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${this.APIKey}&units=imperial`;
   }
   // TODO: Create fetchAndDestructureLocationData method
-  // private async fetchAndDestructureLocationData() {}
+  private async fetchAndDestructureLocationData() {
+    try {
+      const geocodeURL = this.buildGeocodeQuery();
+      const locationData = await this.fetchLocationData(geocodeURL);
+      const coordinates = this.destructureLocationData(locationData);
+      return coordinates;
+    } // catch err
+  }
   // TODO: Create fetchWeatherData method
   // private async fetchWeatherData(coordinates: Coordinates) {}
   // TODO: Build parseCurrentWeather method
   // private parseCurrentWeather(response: any) {}
   // TODO: Complete buildForecastArray method
-  // private buildForecastArray(currentWeather: Weather, weatherData: any[]) {}
+  private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
+    const forecastArray = [];
+    const today = new Date().toLocaleDateString();
+
+    for (let i = 0; i < weatherData.length; i += 7)
+  }
   // TODO: Complete getWeatherForCity method
   async getWeatherForCity(city: string) {}
 }
