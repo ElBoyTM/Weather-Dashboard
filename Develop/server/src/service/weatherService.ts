@@ -50,7 +50,16 @@ class WeatherService {
     this.cityName = '';
   }
   // TODO: Create fetchLocationData method
-  // private async fetchLocationData(query: string) {}
+  private async fetchLocationData(query: string) {
+    try {
+      const response = await fetch(`${this.baseURL}/data/2.5/forecast?lat={lat}&appid=${this.APIKey}`);
+      const locationData = await response.json();
+      return locationData;
+    } catch (error) {
+      console.log('Error:', error);
+      return '';
+    }
+   }
   // TODO: Create destructureLocationData method
   // private destructureLocationData(locationData: Coordinates): Coordinates {}
   // TODO: Create buildGeocodeQuery method
