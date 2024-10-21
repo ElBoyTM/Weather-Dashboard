@@ -77,7 +77,7 @@ class WeatherService {
       const locationData = await this.fetchLocationData(geocodeURL);
       const coordinates = this.destructureLocationData(locationData);
       return coordinates;
-    } // catch err
+    } catch (err) {}
   }
   // TODO: Create fetchWeatherData method
   // private async fetchWeatherData(coordinates: Coordinates) {}
@@ -88,7 +88,28 @@ class WeatherService {
     const forecastArray = [];
     const today = new Date().toLocaleDateString();
 
-    for (let i = 0; i < weatherData.length; i += 7)
+    for (let i = 0; i < weatherData.length; i += 7) {
+      const date = new Date(weatherData[i].dt = 1000).toLocaleDateString();
+
+      if (date === today) continue;
+
+      const icon = weatherData[i].weather[0].icon;
+      const iconDescription =weatherData[i].weather[0].description;
+      const tempF = weatherData[i].main.temp;
+      const windSpeed = weatherData[i].wind.speed;
+      const humidity = weatherData[i].main.humidity;
+
+      forecastArray.push({
+        date,
+        icon,
+        iconDescription,
+        tempF,
+        windSpeed,
+        humidity,
+      })
+    }
+
+    return forecastArray;
   }
   // TODO: Complete getWeatherForCity method
   async getWeatherForCity(city: string) {}
