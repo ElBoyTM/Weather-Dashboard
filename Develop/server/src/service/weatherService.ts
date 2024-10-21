@@ -52,7 +52,7 @@ class WeatherService {
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
     try {
-      const response = await fetch(`${this.baseURL}/data/2.5/forecast?lat={lat}&appid=${this.APIKey}`);
+      const response = await fetch(query);
       const locationData = await response.json();
       return locationData;
     } catch (error) {
