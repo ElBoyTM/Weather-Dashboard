@@ -57,7 +57,7 @@ class WeatherService {
       return locationData;
     } catch (error) {
       console.log('Error:', error);
-      return '';
+      throw error;
     }
    }
   // TODO: Create destructureLocationData method
@@ -82,7 +82,7 @@ class WeatherService {
       return coordinates;
     } catch (err) {
       console.log('Error');
-      console.log(err);
+      throw err;
     }
   }
   // TODO: Create fetchWeatherData method
