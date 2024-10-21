@@ -93,7 +93,11 @@ class WeatherService {
     return data;
   }
   // TODO: Build parseCurrentWeather method
-  // private parseCurrentWeather(response: any) {}
+  private parseCurrentWeather(response: any) {
+    const city = response.city.name;
+    const cityID = response.city.id;
+
+  }
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
     const forecastArray = [];
@@ -123,7 +127,15 @@ class WeatherService {
     return forecastArray;
   }
   // TODO: Complete getWeatherForCity method
-  async getWeatherForCity(city: string) {}
+  async getWeatherForCity(city: string) {
+    this.cityName = city
+    const coordinates = await this.fetchAndDestructureLocationData();
+    const weatherData = await this.fetchWeatherData(coordinates);
+    const currentWeather = this.parseCurrentWeather(weatherData);
+    const forecastArray = this.buildForecastArray(currentWeather, weatherData.list);
+    const completeWeather = [currentWeather, ...forecastArray];
+    return completeWeather;
+  }
 }
 
 export default new WeatherService();
