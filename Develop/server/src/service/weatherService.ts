@@ -9,8 +9,34 @@ interface Coordinates {
   country: string;
   state?: string;
 }
-// TODO: Define a class for the Weather object
+// DONE: Define a class for the Weather object
+class Weather {
+  city: string;
+  date: string;
+  icon: string;
+  iconDescription: string;
+  temperature: number;
+  humidity: number;
+  wind: number;
 
+  constructor(
+    city: string,
+    date: string,
+    icon: string,
+    iconDescription: string,
+    temperature: number,
+    humidity: number,
+    wind: number,
+  ) {
+    this.city = city;
+    this.date = date;
+    this.icon = icon;
+    this.iconDescription = iconDescription
+    this.temperature = temperature;
+    this.humidity = humidity;
+    this.wind = wind;
+  }
+};
 // TODO: Complete the WeatherService class
 class WeatherService {
   // TODO: Define the baseURL, API key, and city name properties
