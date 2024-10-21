@@ -16,10 +16,24 @@ router.post('/', async (req: Request, res: Response) => {
     res.status(500).json(err);
   }
   // TODO: save city to search history
+  try {
+    await HistoryService.addCity(city);
+  } catch (err) {
+    console.log(err);
+    console.log('City not saved to search history');
+  }
 });
 
 // TODO: GET search history
-router.get('/history', async (req: Request, res: Response) => {});
+router.get('/history', async (req: Request, res: Response) => {
+  try {
+    const history = await HistoryService.getCities();
+    res.json(history);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // * BONUS TODO: DELETE city from search history
 router.delete('/history/:id', async (req: Request, res: Response) => {});
