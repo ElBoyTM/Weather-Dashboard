@@ -77,7 +77,10 @@ class WeatherService {
       const locationData = await this.fetchLocationData(geocodeURL);
       const coordinates = this.destructureLocationData(locationData);
       return coordinates;
-    } catch (err) {}
+    } catch (err) {
+      console.log('Error');
+      console.log(err);
+    }
   }
   // TODO: Create fetchWeatherData method
   // private async fetchWeatherData(coordinates: Coordinates) {}
