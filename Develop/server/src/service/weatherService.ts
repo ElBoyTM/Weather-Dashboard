@@ -9,6 +9,7 @@ interface Coordinates {
 // DONE: Define a class for the Weather object
 class Weather {
   city: string;
+  cityID: string;
   date: string;
   icon: string;
   iconDescription: string;
@@ -18,6 +19,7 @@ class Weather {
 
   constructor(
     city: string,
+    cityID: string,
     date: string,
     icon: string,
     iconDescription: string,
@@ -26,6 +28,7 @@ class Weather {
     wind: number,
   ) {
     this.city = city;
+    this.cityID = cityID;
     this.date = date;
     this.icon = icon;
     this.iconDescription = iconDescription
@@ -96,7 +99,14 @@ class WeatherService {
   private parseCurrentWeather(response: any) {
     const city = response.city.name;
     const cityID = response.city.id;
+    const date = new Date(response.list[0].dt = 1000).toLocaleDateString();
+    const icon = response.list[0].weather[0].icon;
+    const iconDescription = response.list[0].weather[0].description;
+    const tempF = response.list[0].main.temp;
+    const windSpeed = response.list[0].wind.speed;
+    const humidity = response.list[0].main.humidity;
 
+    return new Weather(city, cityID, date, icon, iconDescription, tempF, windSpeed, humidity);
   }
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
