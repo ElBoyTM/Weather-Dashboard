@@ -96,7 +96,7 @@ class WeatherService {
     return data;
   }
   // TODO: Build parseCurrentWeather method
-  private parseCurrentWeather(response: any) {
+  private parseCurrentWeather(response: any): Weather {
     const city = response.city.name;
     const cityID = response.city.id;
     const date = new Date(response.list[0].dt = 1000).toLocaleDateString();
