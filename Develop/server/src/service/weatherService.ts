@@ -111,12 +111,13 @@ class WeatherService {
   // TODO: Complete buildForecastArray method
   private buildForecastArray(_currentWeather: Weather, weatherData: any[]) {
     const forecastArray = [];
-    const today = new Date().toLocaleDateString();
+    const today = new Date();
 
     for (let i = 0; i < weatherData.length; i += 8) {
-      const date = new Date(weatherData[i].dt = 1000).toLocaleDateString();
+      today.setDate(today.getDate() + i);
+      const date = today.toLocaleDateString();
 
-      if (date === today) continue;
+      // if (date === today) continue;
 
       const icon = weatherData[i].weather[0].icon;
       const iconDescription =weatherData[i].weather[0].description;
