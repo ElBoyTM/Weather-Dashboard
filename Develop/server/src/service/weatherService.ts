@@ -114,7 +114,7 @@ class WeatherService {
     const today = new Date();
 
     for (let i = 0; i < weatherData.length; i += 8) {
-      today.setDate(today.getDate() + i);
+      today.setDate(today.getDate() + 1);
       const date = today.toLocaleDateString();
 
       // if (date === today) continue;
