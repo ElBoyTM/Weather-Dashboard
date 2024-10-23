@@ -78,7 +78,7 @@ class WeatherService {
     try {
       const geocodeURL = this.buildGeocodeQuery();
       const locationData = await this.fetchLocationData(geocodeURL);
-      const coordinates = this.destructureLocationData(locationData);
+      const coordinates = this.destructureLocationData(locationData[0]);
       return coordinates;
     } catch (err) {
       console.log('Error');
@@ -138,7 +138,7 @@ class WeatherService {
   }
   // TODO: Complete getWeatherForCity method
   async getWeatherForCity(city: string) {
-    this.cityName = city
+    this.cityName = city;
     const coordinates = await this.fetchAndDestructureLocationData();
     const weatherData = await this.fetchWeatherData(coordinates);
     const currentWeather = this.parseCurrentWeather(weatherData);
