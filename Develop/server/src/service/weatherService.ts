@@ -113,7 +113,7 @@ class WeatherService {
     const forecastArray = [];
     const today = new Date().toLocaleDateString();
 
-    for (let i = 0; i < weatherData.length; i += 7) {
+    for (let i = 0; i < weatherData.length; i += 8) {
       const date = new Date(weatherData[i].dt = 1000).toLocaleDateString();
 
       if (date === today) continue;
