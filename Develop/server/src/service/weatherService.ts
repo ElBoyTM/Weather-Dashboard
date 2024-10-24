@@ -13,9 +13,9 @@ class Weather {
   date: string;
   icon: string;
   iconDescription: string;
-  temperature: number;
+  tempF: number;
   humidity: number;
-  wind: number;
+  windSpeed: number;
 
   constructor(
     city: string,
@@ -23,18 +23,18 @@ class Weather {
     date: string,
     icon: string,
     iconDescription: string,
-    temperature: number,
+    tempF: number,
     humidity: number,
-    wind: number,
+    windSpeed: number,
   ) {
     this.city = city;
     this.cityID = cityID;
     this.date = date;
     this.icon = icon;
     this.iconDescription = iconDescription
-    this.temperature = temperature;
+    this.tempF = tempF;
     this.humidity = humidity;
-    this.wind = wind;
+    this.windSpeed = windSpeed;
   }
 };
 // TODO: Complete the WeatherService class
@@ -99,7 +99,7 @@ class WeatherService {
   private parseCurrentWeather(response: any): Weather {
     const city = response.city.name;
     const cityID = response.city.id;
-    const date = new Date(response.list[0].dt = 1000).toLocaleDateString();
+    const date = new Date().toLocaleDateString();
     const icon = response.list[0].weather[0].icon;
     const iconDescription = response.list[0].weather[0].description;
     const tempF = response.list[0].main.temp;
@@ -109,15 +109,13 @@ class WeatherService {
     return new Weather(city, cityID, date, icon, iconDescription, tempF, windSpeed, humidity);
   }
   // TODO: Complete buildForecastArray method
-  private buildForecastArray(_currentWeather: Weather, weatherData: any[]) {
-    const forecastArray = [];
-    const today = new Date();
+  private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
+    const forecastArray = [currentWeather];
 
     for (let i = 0; i < weatherData.length; i += 8) {
-      today.setDate(today.getDate() + 1);
-      const date = today.toLocaleDateString();
-
-      // if (date === today) continue;
+      const date = new Date(weatherData[i].dt_txt).toLocaleDateString();
+      const city = currentWeather.city;
+      const cityID = currentWeather.cityID;
 
       const icon = weatherData[i].weather[0].icon;
       const iconDescription =weatherData[i].weather[0].description;
@@ -125,14 +123,16 @@ class WeatherService {
       const windSpeed = weatherData[i].wind.speed;
       const humidity = weatherData[i].main.humidity;
 
-      forecastArray.push({
+      forecastArray.push(new Weather(
+        city,
+        cityID,
         date,
         icon,
         iconDescription,
         tempF,
-        windSpeed,
         humidity,
-      })
+        windSpeed
+      ))
     }
 
     return forecastArray;
