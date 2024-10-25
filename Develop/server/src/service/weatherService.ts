@@ -130,8 +130,8 @@ class WeatherService {
         icon,
         iconDescription,
         tempF,
-        humidity,
-        windSpeed
+        windSpeed,
+        humidity
       ))
     }
     
