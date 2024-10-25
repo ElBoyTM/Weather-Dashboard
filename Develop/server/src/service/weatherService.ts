@@ -106,7 +106,7 @@ class WeatherService {
     const windSpeed = response.list[0].wind.speed;
     const humidity = response.list[0].main.humidity;
 
-    return new Weather(city, cityID, date, icon, iconDescription, tempF, windSpeed, humidity);
+    return new Weather(city, cityID, date, icon, iconDescription, tempF, humidity, windSpeed);
   }
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
@@ -130,8 +130,8 @@ class WeatherService {
         icon,
         iconDescription,
         tempF,
-        windSpeed,
-        humidity
+        humidity,
+        windSpeed
       ))
     }
     
