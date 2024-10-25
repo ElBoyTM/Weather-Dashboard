@@ -134,7 +134,7 @@ class WeatherService {
         windSpeed
       ))
     }
-
+    
     return forecastArray;
   }
   // TODO: Complete getWeatherForCity method
@@ -144,7 +144,7 @@ class WeatherService {
     const weatherData = await this.fetchWeatherData(coordinates);
     const currentWeather = this.parseCurrentWeather(weatherData);
     const forecastArray = this.buildForecastArray(currentWeather, weatherData.list);
-    const completeWeather = [currentWeather, ...forecastArray];
+    const completeWeather = [...forecastArray];
     return completeWeather;
   }
 }
