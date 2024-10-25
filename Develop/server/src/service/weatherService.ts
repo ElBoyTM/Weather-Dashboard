@@ -112,7 +112,7 @@ class WeatherService {
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
     const forecastArray = [currentWeather];
 
-    for (let i = 0; i < weatherData.length; i += 8) {
+    for (let i = 1; i < weatherData.length; i += 8) {
       const date = new Date(weatherData[i].dt_txt).toLocaleDateString();
       const city = currentWeather.city;
       const cityID = currentWeather.cityID;
